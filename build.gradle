@@ -50,13 +50,6 @@ repositories {
     mavenCentral()
     maven { url 'https://jitpack.io' }
     maven { url "https://repo.sk1er.club/repository/maven-public" }
-    maven {
-        credentials {
-            username "$nexus_user"
-            password "$nexus_password"
-        }
-        url "https://repo.sk1er.club/repository/maven-private"
-    }
     maven { url 'https://repo.spongepowered.org/maven' }
 }
 def FABRIC = fabric
@@ -278,8 +271,6 @@ dependencies {
         ][mcVersion]
     }
 
-    embed "gg.essential:loader-launchwrapper:1.1.0"
-    implementation "gg.essential:essential-${mcVersionStr}-forge:1282"
 
     // FG already adds this even though it is not available at runtime, so we need to manually list it to bundle it
     if (VANILLA) {
@@ -411,9 +402,7 @@ jar {
         manifest {
             attributes "ModSide": "CLIENT",
                     "FMLCorePluginContainsFMLMod": "Yes, yes it does",
-                    "FMLCorePlugin": "club.sk1er.mods.scrollabletooltips.forge.FMLLoadingPlugin",
-                    "TweakClass": "gg.essential.loader.stage0.EssentialSetupTweaker",
-                    "TweakOrder": "0"
+                    "FMLCorePlugin": "club.sk1er.mods.scrollabletooltips.forge.FMLLoadingPlugin"
         }
     }
 }
